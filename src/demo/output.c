@@ -8,7 +8,7 @@ static const uint16_t all_attrs[] = {
 	0,
 	TB_BOLD,
 	TB_UNDERLINE,
-	TB_BOLD | TB_UNDERLINE,
+	TB_BRIGHT
 };
 
 static int next_char(int current) {
@@ -24,7 +24,7 @@ static void draw_line(int x, int y, uint16_t bg) {
 	for (a = 0; a < 4; a++) {
 		for (c = TB_DEFAULT; c <= TB_WHITE; c++) {
 			uint16_t fg = all_attrs[a] | c;
-			tb_change_cell(x, y, chars[current_char], fg, bg);
+			tb_change_cell(x, y, chars[current_char], fg, bg | TB_BRIGHT);
 			current_char = next_char(current_char);
 			x++;
 		}

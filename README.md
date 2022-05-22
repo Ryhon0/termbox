@@ -1,9 +1,4 @@
-## IMPORTANT
-
-This library is no longer maintained. It's pretty small if you have a big
-project that relies on it, just maintain it yourself. Or look for forks. Or look
-for alternatives. Or better - avoid using terminals for UI. Never the less, thanks
-to all who ever contributed.
+This fork adds support for bright colors (4-bit colors) in `TB_OUTPUT_NORMAL` mode. Use the `TB_BRIGHT` attribute with your color to get bright colors.
 
 ## Termbox
 

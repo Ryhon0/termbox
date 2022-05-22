@@ -408,14 +408,24 @@ static void write_sgr(uint16_t fg, uint16_t bg) {
 	default:
 		WRITE_LITERAL("\033[");
 		if (fg != TB_DEFAULT) {
-			WRITE_LITERAL("3");
+			if(fg & TB_BRIGHT)
+			{
+				fg = fg & 0x0F;
+				WRITE_LITERAL("9");
+			}
+			else WRITE_LITERAL("3");
 			WRITE_INT(fg - 1);
 			if (bg != TB_DEFAULT) {
 				WRITE_LITERAL(";");
 			}
 		}
 		if (bg != TB_DEFAULT) {
-			WRITE_LITERAL("4");
+			if(bg & TB_BRIGHT)
+			{
+				bg = bg & 0x0F;
+				WRITE_LITERAL("10");
+			}
+			else WRITE_LITERAL("4");
 			WRITE_INT(bg - 1);
 		}
 		WRITE_LITERAL("m");
@@ -527,8 +537,8 @@ static void send_attr(uint16_t fg, uint16_t bg)
 
 		case TB_OUTPUT_NORMAL:
 		default:
-			fgcol = fg & 0x0F;
-			bgcol = bg & 0x0F;
+			fgcol = fg & (0x0F | TB_BRIGHT);
+			bgcol = bg & (0x0F | TB_BRIGHT);
 		}
 
 		if (fg & TB_BOLD)

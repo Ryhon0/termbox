@@ -140,6 +140,7 @@ WHITE     = 0x08
 BOLD      = 0x0100
 UNDERLINE = 0x0200
 REVERSE   = 0x0400
+BRIGHT    = 0x0800
 
 # misc ----------------------------
 
